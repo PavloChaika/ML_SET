@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/533fcaa5726240da9df1f7f650246286/artifacts
+end_time: 1717509788490
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 533fcaa5726240da9df1f7f650246286
+run_name: suave-ray-79
+run_uuid: 533fcaa5726240da9df1f7f650246286
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717509771906
+status: 3
+tags: []
+user_id: Pavlo

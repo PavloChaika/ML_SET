@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/b35e6939fb564b218677f3e451fc9276/artifacts
+end_time: 1717428830706
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b35e6939fb564b218677f3e451fc9276
+run_name: bustling-sponge-305
+run_uuid: b35e6939fb564b218677f3e451fc9276
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717428695292
+status: 3
+tags: []
+user_id: Pavlo

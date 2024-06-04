@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/80f9e6bd69ef4f5087601b0f0b237c45/artifacts
+deleted_time: 1717345216232
+end_time: 1717345081525
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 80f9e6bd69ef4f5087601b0f0b237c45
+run_name: legendary-mule-958
+run_uuid: 80f9e6bd69ef4f5087601b0f0b237c45
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345065796
+status: 3
+tags: []
+user_id: Pavlo

@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/04bcc4d6127c4479aeab228db6f7d72e/artifacts
+deleted_time: 1717345216230
+end_time: 1717345096930
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 04bcc4d6127c4479aeab228db6f7d72e
+run_name: rumbling-yak-236
+run_uuid: 04bcc4d6127c4479aeab228db6f7d72e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345081541
+status: 3
+tags: []
+user_id: Pavlo

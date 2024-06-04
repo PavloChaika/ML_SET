@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/32aa23ac9dc547d79a41f7cd70e5d3f6/artifacts
+deleted_time: 1717345216228
+end_time: 1717345097019
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 32aa23ac9dc547d79a41f7cd70e5d3f6
+run_name: gentle-mule-37
+run_uuid: 32aa23ac9dc547d79a41f7cd70e5d3f6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345096945
+status: 3
+tags: []
+user_id: Pavlo

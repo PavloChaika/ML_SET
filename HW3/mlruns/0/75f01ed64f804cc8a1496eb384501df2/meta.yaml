@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/75f01ed64f804cc8a1496eb384501df2/artifacts
+end_time: 1717437875283
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 75f01ed64f804cc8a1496eb384501df2
+run_name: grandiose-gnat-100
+run_uuid: 75f01ed64f804cc8a1496eb384501df2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717437128201
+status: 3
+tags: []
+user_id: Pavlo

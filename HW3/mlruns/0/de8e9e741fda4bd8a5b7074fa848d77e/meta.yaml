@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/de8e9e741fda4bd8a5b7074fa848d77e/artifacts
+deleted_time: 1717345216233
+end_time: 1717345065785
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: de8e9e741fda4bd8a5b7074fa848d77e
+run_name: illustrious-robin-22
+run_uuid: de8e9e741fda4bd8a5b7074fa848d77e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345050007
+status: 3
+tags: []
+user_id: Pavlo

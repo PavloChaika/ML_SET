@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/0ba327330f9c46cb8a0478c47a4feab8/artifacts
+deleted_time: 1717345216254
+end_time: 1717336611150
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 0ba327330f9c46cb8a0478c47a4feab8
+run_name: redolent-fox-443
+run_uuid: 0ba327330f9c46cb8a0478c47a4feab8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717336587635
+status: 3
+tags: []
+user_id: Pavlo

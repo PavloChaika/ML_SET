@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/dd379e47518c4bc79f9a0562f0cd7e8e/artifacts
+end_time: 1717347209334
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dd379e47518c4bc79f9a0562f0cd7e8e
+run_name: salty-wren-435
+run_uuid: dd379e47518c4bc79f9a0562f0cd7e8e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717347209258
+status: 4
+tags: []
+user_id: Pavlo

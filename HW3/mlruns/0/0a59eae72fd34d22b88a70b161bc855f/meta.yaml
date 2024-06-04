@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/0a59eae72fd34d22b88a70b161bc855f/artifacts
+end_time: 1717355229437
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0a59eae72fd34d22b88a70b161bc855f
+run_name: sneaky-zebra-379
+run_uuid: 0a59eae72fd34d22b88a70b161bc855f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717355224330
+status: 4
+tags: []
+user_id: Pavlo

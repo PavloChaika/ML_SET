@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/fcc79942871d4aec88f1bfe4a6e0622f/artifacts
+end_time: 1717429541905
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fcc79942871d4aec88f1bfe4a6e0622f
+run_name: blushing-grub-157
+run_uuid: fcc79942871d4aec88f1bfe4a6e0622f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717429201287
+status: 4
+tags: []
+user_id: Pavlo

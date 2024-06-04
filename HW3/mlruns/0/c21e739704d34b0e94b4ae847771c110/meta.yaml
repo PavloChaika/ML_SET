@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/c21e739704d34b0e94b4ae847771c110/artifacts
+end_time: 1717355657090
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c21e739704d34b0e94b4ae847771c110
+run_name: delightful-hound-451
+run_uuid: c21e739704d34b0e94b4ae847771c110
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717355632729
+status: 3
+tags: []
+user_id: Pavlo

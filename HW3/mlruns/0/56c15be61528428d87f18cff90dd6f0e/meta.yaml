@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/56c15be61528428d87f18cff90dd6f0e/artifacts
+end_time: 1717355263884
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 56c15be61528428d87f18cff90dd6f0e
+run_name: powerful-lynx-111
+run_uuid: 56c15be61528428d87f18cff90dd6f0e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717355254368
+status: 3
+tags: []
+user_id: Pavlo

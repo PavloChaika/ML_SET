@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/269a060adf0f41a2bda1484597c7b3f8/artifacts
+end_time: 1717355888779
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 269a060adf0f41a2bda1484597c7b3f8
+run_name: kindly-croc-457
+run_uuid: 269a060adf0f41a2bda1484597c7b3f8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717355888700
+status: 4
+tags: []
+user_id: Pavlo

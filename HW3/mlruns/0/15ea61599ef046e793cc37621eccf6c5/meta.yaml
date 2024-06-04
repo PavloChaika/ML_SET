@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/15ea61599ef046e793cc37621eccf6c5/artifacts
+end_time: 1717345295606
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 15ea61599ef046e793cc37621eccf6c5
+run_name: capable-lark-128
+run_uuid: 15ea61599ef046e793cc37621eccf6c5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345283305
+status: 3
+tags: []
+user_id: Pavlo
