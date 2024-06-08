@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/8f6527f31d9744159a0d85a343e6ffdc/artifacts
+deleted_time: 1717575844980
+end_time: 1717514484451
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 8f6527f31d9744159a0d85a343e6ffdc
+run_name: inquisitive-quail-1
+run_uuid: 8f6527f31d9744159a0d85a343e6ffdc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717513659428
+status: 4
+tags: []
+user_id: Pavlo

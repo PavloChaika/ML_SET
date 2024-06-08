@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/6e7428eaf2a14986a94b13ea211c9552/artifacts
+end_time: 1717583270715
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6e7428eaf2a14986a94b13ea211c9552
+run_name: likeable-roo-691
+run_uuid: 6e7428eaf2a14986a94b13ea211c9552
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717578479460
+status: 3
+tags: []
+user_id: Pavlo

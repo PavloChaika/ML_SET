@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/a40e8b3124094a5097f77cd538617f40/artifacts
+deleted_time: 1717575844972
+end_time: 1717514583096
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: a40e8b3124094a5097f77cd538617f40
+run_name: debonair-donkey-433
+run_uuid: a40e8b3124094a5097f77cd538617f40
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717514496044
+status: 4
+tags: []
+user_id: Pavlo

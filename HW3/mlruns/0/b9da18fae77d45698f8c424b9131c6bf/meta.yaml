@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/b9da18fae77d45698f8c424b9131c6bf/artifacts
+end_time: 1717597458094
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b9da18fae77d45698f8c424b9131c6bf
+run_name: illustrious-worm-835
+run_uuid: b9da18fae77d45698f8c424b9131c6bf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717596160398
+status: 3
+tags: []
+user_id: Pavlo

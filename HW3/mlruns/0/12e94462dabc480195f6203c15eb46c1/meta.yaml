@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/12e94462dabc480195f6203c15eb46c1/artifacts
+deleted_time: 1717575845006
+end_time: 1717509721283
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 12e94462dabc480195f6203c15eb46c1
+run_name: gifted-kit-491
+run_uuid: 12e94462dabc480195f6203c15eb46c1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717509645948
+status: 4
+tags: []
+user_id: Pavlo

@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/1cb776058f6a468b9615752e85b31735/artifacts
+deleted_time: 1717575845057
+end_time: 1717428968974
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 1cb776058f6a468b9615752e85b31735
+run_name: efficient-dove-25
+run_uuid: 1cb776058f6a468b9615752e85b31735
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717428830721
+status: 3
+tags: []
+user_id: Pavlo

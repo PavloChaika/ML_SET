@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/9f5fae96354f45aea052029c44eee087/artifacts
+end_time: 1717602580070
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9f5fae96354f45aea052029c44eee087
+run_name: amusing-flea-782
+run_uuid: 9f5fae96354f45aea052029c44eee087
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717602319393
+status: 3
+tags: []
+user_id: Pavlo

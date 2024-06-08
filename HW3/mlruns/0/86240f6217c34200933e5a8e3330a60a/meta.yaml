@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/86240f6217c34200933e5a8e3330a60a/artifacts
+deleted_time: 1717575845049
+end_time: 1717429123441
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 86240f6217c34200933e5a8e3330a60a
+run_name: invincible-fawn-293
+run_uuid: 86240f6217c34200933e5a8e3330a60a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717428968996
+status: 3
+tags: []
+user_id: Pavlo

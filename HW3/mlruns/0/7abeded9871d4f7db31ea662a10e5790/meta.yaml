@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/7abeded9871d4f7db31ea662a10e5790/artifacts
+end_time: 1717613422136
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7abeded9871d4f7db31ea662a10e5790
+run_name: capable-stag-613
+run_uuid: 7abeded9871d4f7db31ea662a10e5790
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717612889406
+status: 3
+tags: []
+user_id: Pavlo

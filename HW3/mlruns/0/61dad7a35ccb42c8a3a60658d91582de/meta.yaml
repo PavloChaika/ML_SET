@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/61dad7a35ccb42c8a3a60658d91582de/artifacts
+deleted_time: 1717575844969
+end_time: 1717514589038
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 61dad7a35ccb42c8a3a60658d91582de
+run_name: sincere-robin-298
+run_uuid: 61dad7a35ccb42c8a3a60658d91582de
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717514588935
+status: 4
+tags: []
+user_id: Pavlo

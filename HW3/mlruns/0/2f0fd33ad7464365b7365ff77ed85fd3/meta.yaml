@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/2f0fd33ad7464365b7365ff77ed85fd3/artifacts
+end_time: 1717616936695
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2f0fd33ad7464365b7365ff77ed85fd3
+run_name: sassy-duck-604
+run_uuid: 2f0fd33ad7464365b7365ff77ed85fd3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717616391831
+status: 3
+tags: []
+user_id: Pavlo

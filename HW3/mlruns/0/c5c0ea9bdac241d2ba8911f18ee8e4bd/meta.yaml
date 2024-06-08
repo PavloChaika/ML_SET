@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/c5c0ea9bdac241d2ba8911f18ee8e4bd/artifacts
+deleted_time: 1717345216247
+end_time: 1717342154409
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: c5c0ea9bdac241d2ba8911f18ee8e4bd
+run_name: charming-hare-823
+run_uuid: c5c0ea9bdac241d2ba8911f18ee8e4bd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717339837251
+status: 3
+tags: []
+user_id: Pavlo

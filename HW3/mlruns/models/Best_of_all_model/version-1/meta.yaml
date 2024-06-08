@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1717861383014
+current_stage: None
+description: ''
+last_updated_timestamp: 1717861383014
+name: Best_of_all_model
+run_id: 2b46048f81424c1a9309afb6e5d030ac
+run_link: ''
+source: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/2b46048f81424c1a9309afb6e5d030ac/artifacts/best-torch-rnn-model
+status: READY
+status_message: null
+storage_location: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/2b46048f81424c1a9309afb6e5d030ac/artifacts/best-torch-rnn-model
+user_id: null
+version: 1

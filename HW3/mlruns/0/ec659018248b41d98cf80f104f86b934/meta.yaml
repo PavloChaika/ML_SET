@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/ec659018248b41d98cf80f104f86b934/artifacts
+deleted_time: 1717575845064
+end_time: 1717428519778
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: ec659018248b41d98cf80f104f86b934
+run_name: hilarious-grouse-872
+run_uuid: ec659018248b41d98cf80f104f86b934
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717428383324
+status: 3
+tags: []
+user_id: Pavlo

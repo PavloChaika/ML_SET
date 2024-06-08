@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/f9f0a4db58d1467288241c32427d7b21/artifacts
+deleted_time: 1717575845024
+end_time: 1717443477270
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: f9f0a4db58d1467288241c32427d7b21
+run_name: gaudy-robin-284
+run_uuid: f9f0a4db58d1467288241c32427d7b21
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717442950243
+status: 3
+tags: []
+user_id: Pavlo

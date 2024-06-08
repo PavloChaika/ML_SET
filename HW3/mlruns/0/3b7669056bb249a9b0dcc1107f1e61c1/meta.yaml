@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/3b7669056bb249a9b0dcc1107f1e61c1/artifacts
+deleted_time: 1717575845139
+end_time: 1717345425883
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 3b7669056bb249a9b0dcc1107f1e61c1
+run_name: enchanting-hog-239
+run_uuid: 3b7669056bb249a9b0dcc1107f1e61c1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345416636
+status: 3
+tags: []
+user_id: Pavlo

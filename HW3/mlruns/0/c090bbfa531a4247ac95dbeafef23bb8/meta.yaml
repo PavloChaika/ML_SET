@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/c090bbfa531a4247ac95dbeafef23bb8/artifacts
+end_time: 1717595359102
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c090bbfa531a4247ac95dbeafef23bb8
+run_name: orderly-stoat-949
+run_uuid: c090bbfa531a4247ac95dbeafef23bb8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717595330040
+status: 4
+tags: []
+user_id: Pavlo

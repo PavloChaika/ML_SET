@@ -1,0 +1,21 @@
+artifact_path: best-torch-rnn-model
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.11.9
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.3.0+cpu
+mlflow_version: 2.13.1
+model_size_bytes: 19024
+model_uuid: 49aafe9c519f413eaa104763a4ddec80
+run_id: e5fa7610bb8c476cb0a13ea8f67b635b
+utc_time_created: '2024-06-02 16:23:21.476509'

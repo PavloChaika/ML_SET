@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/d46698abe2ca4268bd0820249e158f23/artifacts
+deleted_time: 1717575845027
+end_time: 1717442920376
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: d46698abe2ca4268bd0820249e158f23
+run_name: bedecked-croc-702
+run_uuid: d46698abe2ca4268bd0820249e158f23
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717442920265
+status: 4
+tags: []
+user_id: Pavlo

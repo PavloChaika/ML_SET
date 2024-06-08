@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/0bd40d03c417403db48d1f5e3b21420a/artifacts
+deleted_time: 1717345216245
+end_time: 1717343575881
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 0bd40d03c417403db48d1f5e3b21420a
+run_name: gregarious-cub-918
+run_uuid: 0bd40d03c417403db48d1f5e3b21420a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717343549371
+status: 3
+tags: []
+user_id: Pavlo

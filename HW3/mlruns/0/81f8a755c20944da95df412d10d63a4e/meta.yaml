@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/81f8a755c20944da95df412d10d63a4e/artifacts
+deleted_time: 1717345216261
+end_time: 1717336270766
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 81f8a755c20944da95df412d10d63a4e
+run_name: enthused-dog-414
+run_uuid: 81f8a755c20944da95df412d10d63a4e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717336249528
+status: 3
+tags: []
+user_id: Pavlo

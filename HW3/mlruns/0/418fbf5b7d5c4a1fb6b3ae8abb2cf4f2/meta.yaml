@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/418fbf5b7d5c4a1fb6b3ae8abb2cf4f2/artifacts
+end_time: 1717608237814
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 418fbf5b7d5c4a1fb6b3ae8abb2cf4f2
+run_name: wistful-pug-407
+run_uuid: 418fbf5b7d5c4a1fb6b3ae8abb2cf4f2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717605139965
+status: 3
+tags: []
+user_id: Pavlo

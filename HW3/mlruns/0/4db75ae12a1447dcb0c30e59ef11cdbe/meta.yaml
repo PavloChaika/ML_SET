@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/4db75ae12a1447dcb0c30e59ef11cdbe/artifacts
+deleted_time: 1717575845019
+end_time: 1717509304917
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 4db75ae12a1447dcb0c30e59ef11cdbe
+run_name: lyrical-calf-595
+run_uuid: 4db75ae12a1447dcb0c30e59ef11cdbe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717509234335
+status: 4
+tags: []
+user_id: Pavlo

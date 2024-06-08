@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/49894a471e454bd2af3b87f3de262e13/artifacts
+deleted_time: 1717575845139
+end_time: 1717345416623
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 49894a471e454bd2af3b87f3de262e13
+run_name: salty-zebra-736
+run_uuid: 49894a471e454bd2af3b87f3de262e13
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345407039
+status: 3
+tags: []
+user_id: Pavlo

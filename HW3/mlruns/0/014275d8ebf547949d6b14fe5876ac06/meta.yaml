@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/014275d8ebf547949d6b14fe5876ac06/artifacts
+end_time: 1717652855757
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 014275d8ebf547949d6b14fe5876ac06
+run_name: awesome-cod-929
+run_uuid: 014275d8ebf547949d6b14fe5876ac06
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717652277411
+status: 4
+tags: []
+user_id: Pavlo

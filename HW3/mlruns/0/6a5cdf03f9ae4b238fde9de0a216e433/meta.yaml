@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/6a5cdf03f9ae4b238fde9de0a216e433/artifacts
+deleted_time: 1717575844998
+end_time: 1717509806064
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 6a5cdf03f9ae4b238fde9de0a216e433
+run_name: wistful-shrike-718
+run_uuid: 6a5cdf03f9ae4b238fde9de0a216e433
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717509788502
+status: 3
+tags: []
+user_id: Pavlo

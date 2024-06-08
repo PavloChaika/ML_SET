@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/b8fb189eb7bd4d68a9997ee949c542f5/artifacts
+deleted_time: 1717575844997
+end_time: 1717509771896
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: b8fb189eb7bd4d68a9997ee949c542f5
+run_name: fun-sheep-324
+run_uuid: b8fb189eb7bd4d68a9997ee949c542f5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717509745010
+status: 3
+tags: []
+user_id: Pavlo

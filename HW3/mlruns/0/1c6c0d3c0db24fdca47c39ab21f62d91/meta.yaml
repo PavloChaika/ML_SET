@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/1c6c0d3c0db24fdca47c39ab21f62d91/artifacts
+deleted_time: 1717575845097
+end_time: 1717355495145
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 1c6c0d3c0db24fdca47c39ab21f62d91
+run_name: serious-ox-131
+run_uuid: 1c6c0d3c0db24fdca47c39ab21f62d91
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717355476254
+status: 3
+tags: []
+user_id: Pavlo

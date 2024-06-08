@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/29fd76ed8df943aca96703a4388becb7/artifacts
+deleted_time: 1717575845152
+end_time: 1717345267886
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 29fd76ed8df943aca96703a4388becb7
+run_name: lyrical-bat-602
+run_uuid: 29fd76ed8df943aca96703a4388becb7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717345257921
+status: 3
+tags: []
+user_id: Pavlo

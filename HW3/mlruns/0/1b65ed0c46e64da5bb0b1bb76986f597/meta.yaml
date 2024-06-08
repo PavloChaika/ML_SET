@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/1b65ed0c46e64da5bb0b1bb76986f597/artifacts
+end_time: 1717575093978
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1b65ed0c46e64da5bb0b1bb76986f597
+run_name: shivering-lark-622
+run_uuid: 1b65ed0c46e64da5bb0b1bb76986f597
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717574041628
+status: 3
+tags: []
+user_id: Pavlo

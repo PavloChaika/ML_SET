@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/63d526b4d6a543cc990f5dea843c323a/artifacts
+end_time: 1717663521188
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 63d526b4d6a543cc990f5dea843c323a
+run_name: redolent-snake-767
+run_uuid: 63d526b4d6a543cc990f5dea843c323a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717662233617
+status: 3
+tags: []
+user_id: Pavlo

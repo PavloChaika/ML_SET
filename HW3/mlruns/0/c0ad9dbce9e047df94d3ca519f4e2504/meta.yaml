@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/c0ad9dbce9e047df94d3ca519f4e2504/artifacts
+end_time: 1717602319371
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c0ad9dbce9e047df94d3ca519f4e2504
+run_name: suave-elk-672
+run_uuid: c0ad9dbce9e047df94d3ca519f4e2504
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717601678802
+status: 3
+tags: []
+user_id: Pavlo

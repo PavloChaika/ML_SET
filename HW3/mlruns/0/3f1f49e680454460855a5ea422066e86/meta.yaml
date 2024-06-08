@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/3f1f49e680454460855a5ea422066e86/artifacts
+deleted_time: 1717594865213
+end_time: 1717594727583
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 3f1f49e680454460855a5ea422066e86
+run_name: rebellious-skink-151
+run_uuid: 3f1f49e680454460855a5ea422066e86
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717594259606
+status: 4
+tags: []
+user_id: Pavlo

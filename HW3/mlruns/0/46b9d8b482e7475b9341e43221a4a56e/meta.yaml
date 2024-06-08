@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/46b9d8b482e7475b9341e43221a4a56e/artifacts
+deleted_time: 1717594074150
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 46b9d8b482e7475b9341e43221a4a56e
+run_name: suave-ox-143
+run_uuid: 46b9d8b482e7475b9341e43221a4a56e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717583270733
+status: 1
+tags: []
+user_id: Pavlo

@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/0d96553a7c8745419f4b8a5b80502d1c/artifacts
+end_time: 1717654691882
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0d96553a7c8745419f4b8a5b80502d1c
+run_name: selective-turtle-838
+run_uuid: 0d96553a7c8745419f4b8a5b80502d1c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717652953151
+status: 3
+tags: []
+user_id: Pavlo

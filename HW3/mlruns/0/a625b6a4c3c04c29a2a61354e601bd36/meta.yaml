@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/a625b6a4c3c04c29a2a61354e601bd36/artifacts
+deleted_time: 1717575845076
+end_time: 1717428284661
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: a625b6a4c3c04c29a2a61354e601bd36
+run_name: receptive-newt-24
+run_uuid: a625b6a4c3c04c29a2a61354e601bd36
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717428155478
+status: 4
+tags: []
+user_id: Pavlo
