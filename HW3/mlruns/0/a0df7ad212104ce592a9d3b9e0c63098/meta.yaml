@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/a0df7ad212104ce592a9d3b9e0c63098/artifacts
+deleted_time: 1717575845036
 end_time: 1717437128182
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: a0df7ad212104ce592a9d3b9e0c63098
 run_name: selective-dog-254
 run_uuid: a0df7ad212104ce592a9d3b9e0c63098

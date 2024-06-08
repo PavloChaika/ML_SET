@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/05a9757877704beeb88cd1d248124e65/artifacts
+deleted_time: 1717575845087
 end_time: 1717355946963
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 05a9757877704beeb88cd1d248124e65
 run_name: dazzling-hare-314
 run_uuid: 05a9757877704beeb88cd1d248124e65

@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/b35e6939fb564b218677f3e451fc9276/artifacts
+deleted_time: 1717575845056
 end_time: 1717428830706
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: b35e6939fb564b218677f3e451fc9276
 run_name: bustling-sponge-305
 run_uuid: b35e6939fb564b218677f3e451fc9276

@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/5cd90fc76b3c4cbb9af75b0c64e4d63c/artifacts
+deleted_time: 1717575845069
 end_time: 1717428333199
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 5cd90fc76b3c4cbb9af75b0c64e4d63c
 run_name: traveling-colt-314
 run_uuid: 5cd90fc76b3c4cbb9af75b0c64e4d63c

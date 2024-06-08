@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/9cb875e8a8df4bfe8ec13342926b8517/artifacts
+deleted_time: 1717575845118
 end_time: 1717355213251
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 9cb875e8a8df4bfe8ec13342926b8517
 run_name: fortunate-dove-83
 run_uuid: 9cb875e8a8df4bfe8ec13342926b8517

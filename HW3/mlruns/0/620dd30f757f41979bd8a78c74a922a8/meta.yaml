@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/620dd30f757f41979bd8a78c74a922a8/artifacts
+end_time: 1717615604651
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 620dd30f757f41979bd8a78c74a922a8
+run_name: bouncy-mole-113
+run_uuid: 620dd30f757f41979bd8a78c74a922a8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717615176982
+status: 3
+tags: []
+user_id: Pavlo

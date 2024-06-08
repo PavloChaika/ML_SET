@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/3458ddacec60435c9455fac1d7bf1ad2/artifacts
+deleted_time: 1717575845126
 end_time: 1717348143461
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 3458ddacec60435c9455fac1d7bf1ad2
 run_name: marvelous-sponge-58
 run_uuid: 3458ddacec60435c9455fac1d7bf1ad2

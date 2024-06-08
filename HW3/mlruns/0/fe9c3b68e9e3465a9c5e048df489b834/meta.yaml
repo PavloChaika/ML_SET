@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/fe9c3b68e9e3465a9c5e048df489b834/artifacts
+end_time: 1717662220428
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fe9c3b68e9e3465a9c5e048df489b834
+run_name: salty-carp-927
+run_uuid: fe9c3b68e9e3465a9c5e048df489b834
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717662176736
+status: 4
+tags: []
+user_id: Pavlo

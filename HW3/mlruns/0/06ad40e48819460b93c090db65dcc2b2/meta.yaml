@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/06ad40e48819460b93c090db65dcc2b2/artifacts
+deleted_time: 1717575845036
 end_time: 1717435027634
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 06ad40e48819460b93c090db65dcc2b2
 run_name: welcoming-auk-279
 run_uuid: 06ad40e48819460b93c090db65dcc2b2

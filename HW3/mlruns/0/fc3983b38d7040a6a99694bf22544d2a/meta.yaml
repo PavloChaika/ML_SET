@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/fc3983b38d7040a6a99694bf22544d2a/artifacts
+end_time: 1717600514948
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fc3983b38d7040a6a99694bf22544d2a
+run_name: youthful-fawn-266
+run_uuid: fc3983b38d7040a6a99694bf22544d2a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717599897258
+status: 3
+tags: []
+user_id: Pavlo

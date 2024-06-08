@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/269a060adf0f41a2bda1484597c7b3f8/artifacts
+deleted_time: 1717575845087
 end_time: 1717355888779
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 269a060adf0f41a2bda1484597c7b3f8
 run_name: kindly-croc-457
 run_uuid: 269a060adf0f41a2bda1484597c7b3f8

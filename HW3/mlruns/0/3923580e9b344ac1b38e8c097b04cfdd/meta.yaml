@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/3923580e9b344ac1b38e8c097b04cfdd/artifacts
+deleted_time: 1717575844984
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 3923580e9b344ac1b38e8c097b04cfdd
+run_name: trusting-colt-694
+run_uuid: 3923580e9b344ac1b38e8c097b04cfdd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717511628776
+status: 1
+tags: []
+user_id: Pavlo

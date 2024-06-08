@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/92e2e7a1802848fcb764d5434e488f68/artifacts
+deleted_time: 1717575845037
 end_time: 1717430019459
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 92e2e7a1802848fcb764d5434e488f68
 run_name: unruly-quail-5
 run_uuid: 92e2e7a1802848fcb764d5434e488f68

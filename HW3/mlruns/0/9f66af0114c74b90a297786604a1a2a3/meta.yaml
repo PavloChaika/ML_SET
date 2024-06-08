@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/9f66af0114c74b90a297786604a1a2a3/artifacts
+deleted_time: 1717575844952
+end_time: 1717573971853
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 9f66af0114c74b90a297786604a1a2a3
+run_name: merciful-stoat-187
+run_uuid: 9f66af0114c74b90a297786604a1a2a3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717573954252
+status: 4
+tags: []
+user_id: Pavlo

@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/64778eae818f4d9d95af5e971a07880c/artifacts
+deleted_time: 1717575845047
 end_time: 1717429773667
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 64778eae818f4d9d95af5e971a07880c
 run_name: rare-lynx-944
 run_uuid: 64778eae818f4d9d95af5e971a07880c

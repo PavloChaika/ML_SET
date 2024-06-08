@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/948f47ef53d642f8bd809fdf1b8d1e29/artifacts
+deleted_time: 1717575845097
 end_time: 1717355428681
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 948f47ef53d642f8bd809fdf1b8d1e29
 run_name: rumbling-doe-87
 run_uuid: 948f47ef53d642f8bd809fdf1b8d1e29

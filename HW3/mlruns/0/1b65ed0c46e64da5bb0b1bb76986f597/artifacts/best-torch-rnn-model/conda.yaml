@@ -1,0 +1,23 @@
+channels:
+- conda-forge
+dependencies:
+- python=3.11.9
+- pip<=24.0
+- pip:
+  - mlflow==2.13.1
+  - cffi==1.16.0
+  - cloudpickle==3.0.0
+  - defusedxml==0.7.1
+  - huggingface-hub==0.23.2
+  - matplotlib==3.9.0
+  - numpy==1.26.4
+  - packaging==23.2
+  - pandas==2.2.2
+  - pytorch-lightning==2.2.5
+  - pyyaml==6.0.1
+  - regex==2024.5.15
+  - requests==2.32.2
+  - tokenizers==0.19.1
+  - torch==2.3.0
+  - transformers==4.41.2
+name: mlflow-env

@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/533fcaa5726240da9df1f7f650246286/artifacts
+deleted_time: 1717575844996
 end_time: 1717509788490
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 533fcaa5726240da9df1f7f650246286
 run_name: suave-ray-79
 run_uuid: 533fcaa5726240da9df1f7f650246286

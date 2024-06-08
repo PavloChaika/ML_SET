@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/6fcde9d257ec49eba32e6d965c0f3cfe/artifacts
+deleted_time: 1717575844993
+end_time: 1717511438216
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 6fcde9d257ec49eba32e6d965c0f3cfe
+run_name: capricious-moth-251
+run_uuid: 6fcde9d257ec49eba32e6d965c0f3cfe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717511437635
+status: 4
+tags: []
+user_id: Pavlo

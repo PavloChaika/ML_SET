@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/4cd4ac4588054d808bf58e76c821ebbf/artifacts
+deleted_time: 1717575845081
 end_time: 1717394257205
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 4cd4ac4588054d808bf58e76c821ebbf
 run_name: funny-duck-217
 run_uuid: 4cd4ac4588054d808bf58e76c821ebbf

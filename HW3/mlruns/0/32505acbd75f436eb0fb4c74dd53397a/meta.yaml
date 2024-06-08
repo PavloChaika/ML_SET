@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/32505acbd75f436eb0fb4c74dd53397a/artifacts
+deleted_time: 1717575845044
 end_time: 1717430159334
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 32505acbd75f436eb0fb4c74dd53397a
 run_name: intelligent-gull-490
 run_uuid: 32505acbd75f436eb0fb4c74dd53397a

@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/7ada6021dff24bddb90df890664c6d33/artifacts
+end_time: 1717605139899
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7ada6021dff24bddb90df890664c6d33
+run_name: serious-mule-676
+run_uuid: 7ada6021dff24bddb90df890664c6d33
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717603752464
+status: 3
+tags: []
+user_id: Pavlo

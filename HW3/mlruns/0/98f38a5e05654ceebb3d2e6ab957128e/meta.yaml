@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/98f38a5e05654ceebb3d2e6ab957128e/artifacts
+deleted_time: 1717575845097
 end_time: 1717355609742
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 98f38a5e05654ceebb3d2e6ab957128e
 run_name: adorable-boar-604
 run_uuid: 98f38a5e05654ceebb3d2e6ab957128e

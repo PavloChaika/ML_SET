@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/7f952a5cba67404d8164023a218779b1/artifacts
+deleted_time: 1717575845130
 end_time: 1717347209235
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 7f952a5cba67404d8164023a218779b1
 run_name: melodic-foal-130
 run_uuid: 7f952a5cba67404d8164023a218779b1

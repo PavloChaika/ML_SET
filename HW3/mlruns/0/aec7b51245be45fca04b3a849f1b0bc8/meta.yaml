@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/aec7b51245be45fca04b3a849f1b0bc8/artifacts
+end_time: 1717611942453
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aec7b51245be45fca04b3a849f1b0bc8
+run_name: adventurous-bee-999
+run_uuid: aec7b51245be45fca04b3a849f1b0bc8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717611322158
+status: 3
+tags: []
+user_id: Pavlo

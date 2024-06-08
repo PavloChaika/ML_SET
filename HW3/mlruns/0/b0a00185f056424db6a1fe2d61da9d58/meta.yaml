@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/b0a00185f056424db6a1fe2d61da9d58/artifacts
+deleted_time: 1717575845119
 end_time: 1717348218916
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: b0a00185f056424db6a1fe2d61da9d58
 run_name: glamorous-mole-244
 run_uuid: b0a00185f056424db6a1fe2d61da9d58

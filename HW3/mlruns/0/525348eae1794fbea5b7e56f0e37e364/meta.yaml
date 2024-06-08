@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/525348eae1794fbea5b7e56f0e37e364/artifacts
+deleted_time: 1717575845067
 end_time: 1717428371098
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 525348eae1794fbea5b7e56f0e37e364
 run_name: merciful-ray-465
 run_uuid: 525348eae1794fbea5b7e56f0e37e364

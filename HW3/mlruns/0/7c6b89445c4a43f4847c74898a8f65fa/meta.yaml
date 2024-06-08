@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/7c6b89445c4a43f4847c74898a8f65fa/artifacts
+deleted_time: 1717575845018
 end_time: 1717444610817
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 7c6b89445c4a43f4847c74898a8f65fa
 run_name: delightful-zebra-344
 run_uuid: 7c6b89445c4a43f4847c74898a8f65fa

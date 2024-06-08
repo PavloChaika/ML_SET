@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/2efc8175c15b4f4b88cefaaa73ef54a6/artifacts
+deleted_time: 1717575844967
+end_time: 1717514674784
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 2efc8175c15b4f4b88cefaaa73ef54a6
+run_name: gentle-fly-688
+run_uuid: 2efc8175c15b4f4b88cefaaa73ef54a6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717514624944
+status: 4
+tags: []
+user_id: Pavlo

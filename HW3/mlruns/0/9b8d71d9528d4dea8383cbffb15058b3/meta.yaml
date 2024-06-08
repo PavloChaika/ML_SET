@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/9b8d71d9528d4dea8383cbffb15058b3/artifacts
+deleted_time: 1717575845150
 end_time: 1717345283291
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 9b8d71d9528d4dea8383cbffb15058b3
 run_name: popular-fish-97
 run_uuid: 9b8d71d9528d4dea8383cbffb15058b3

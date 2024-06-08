@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/44a1fc19ffb84ff284e4f04ea40c1de8/artifacts
+end_time: 1717595330014
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 44a1fc19ffb84ff284e4f04ea40c1de8
+run_name: aged-skink-60
+run_uuid: 44a1fc19ffb84ff284e4f04ea40c1de8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717594841878
+status: 3
+tags: []
+user_id: Pavlo

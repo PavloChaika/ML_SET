@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/db0e7c577f324baf91a4f6bf832c6b16/artifacts
+deleted_time: 1717575845061
 end_time: 1717428526043
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: db0e7c577f324baf91a4f6bf832c6b16
 run_name: clumsy-gull-566
 run_uuid: db0e7c577f324baf91a4f6bf832c6b16

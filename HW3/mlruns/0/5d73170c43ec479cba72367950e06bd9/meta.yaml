@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/5d73170c43ec479cba72367950e06bd9/artifacts
+deleted_time: 1717575845126
 end_time: 1717348185792
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 5d73170c43ec479cba72367950e06bd9
 run_name: sassy-roo-655
 run_uuid: 5d73170c43ec479cba72367950e06bd9

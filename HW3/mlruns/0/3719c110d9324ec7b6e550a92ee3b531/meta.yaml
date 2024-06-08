@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/3719c110d9324ec7b6e550a92ee3b531/artifacts
+deleted_time: 1717575845104
 end_time: 1717355305095
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 3719c110d9324ec7b6e550a92ee3b531
 run_name: caring-eel-835
 run_uuid: 3719c110d9324ec7b6e550a92ee3b531

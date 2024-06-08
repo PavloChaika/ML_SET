@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/8f009b37176d4e4eb16949979acb8c34/artifacts
+end_time: 1717621366625
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8f009b37176d4e4eb16949979acb8c34
+run_name: melodic-chimp-761
+run_uuid: 8f009b37176d4e4eb16949979acb8c34
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717621172910
+status: 4
+tags: []
+user_id: Pavlo

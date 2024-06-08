@@ -1,8 +1,9 @@
 artifact_uri: file:///D:/ML_SET/Homeworks/HW3/mlruns/0/238f0a1fd897444ba767944a4b616824/artifacts
+deleted_time: 1717575845089
 end_time: 1717355786035
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 238f0a1fd897444ba767944a4b616824
 run_name: mercurial-cod-265
 run_uuid: 238f0a1fd897444ba767944a4b616824
