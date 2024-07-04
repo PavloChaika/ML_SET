@@ -867,26 +867,47 @@ as_flextable(max_row = 999) %>%
 
 -   **Sex**: Excluded from the model as it was not a significant predictor.
 
+The model's accuracy is 0.8, meaning it correctly predicted the class labels for 80% of the instances. The 95% confidence interval for the accuracy ranges from 0.5191 to 0.9567, suggesting variability in performance depending on the sample.
+
+The Kappa statistic of 0.5455 indicates a moderate agreement between the predicted and actual classifications. The McNemar's test p-value of 0.2482 suggests no significant difference in the misclassification rates.
+
+Sensitivity, or the true positive rate, is 1.00, meaning all actual positives were correctly identified. Specificity, or the true negative rate, is 0.50, indicating half of the actual negatives were correctly identified. The positive predictive value is 0.75, meaning 75% of the positive predictions were correct, while the negative predictive value is 1.00, indicating all negative predictions were correct.
+
+Overall, the balanced accuracy of 0.75 reflects a good balance between sensitivity and specificity, showing that the model performs reasonably well in both aspects.
+
 ```{r pca 19, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
 
+library(caret) 
+
+
+# Convert 'Sex' and 'DT' columns to factors
 pca_data$Sex <- as.factor(pca_data$Sex)
 pca_data$DT <- as.factor(pca_data$DT)
 
-
+# Specify numeric variables to scale
 numeric_vars <- c("Age", "Duree", "who5", "phq9", "epices", "girerd", "fried", 
                   "ddsglobal", "ddssoignant", "ddslife", "ddsfam", "hba1c", "tir", "hypo")
-pca_data_2 <- pca_data
-pca_data_2[numeric_vars] <- lapply(pca_data[numeric_vars], scale)
 
+# Split the data into training and testing sets
+set.seed(123)  # For reproducibility
+train_index <- createDataPartition(pca_data$boucle_bin, p = 0.8, list = FALSE)
+train_data <- pca_data[train_index, ]
+test_data <- pca_data[-train_index, ]
+
+# Scale numeric variables in the training set
+train_data[numeric_vars] <- lapply(train_data[numeric_vars], scale)
+
+# Fit the logistic regression model
 formula <- boucle_bin ~ Age + Duree + who5 + I(who5^2) + I(who5^3) + phq9 + epices + girerd + fried + 
   ddsglobal + hba1c + tir + hypo 
 
 model_2 <- glm( 
   formula, 
   family = binomial, 
-  data = pca_data_2
+  data = train_data
 )
 
+# Summarize the model
 summary_model <- summary(model_2)
 
 # Extract the coefficients matrix
@@ -899,29 +920,51 @@ coefficients_df$Term <- rownames(coefficients_df)
 rownames(coefficients_df) <- NULL
 
 # Reorder columns to have 'Term' first
-coefficients_df <- coefficients_df[, c("Term", "Estimate", "Std. Error", "z value", "Pr(>|z|)")]%>%
+coefficients_df <- coefficients_df[, c("Term", "Estimate", "Std. Error", "z value", "Pr(>|z|)")] %>%
   mutate(
-    `Pr(>|z|)` = formatC( `Pr(>|z|)`, format = "f", digits = 4)
+    `Pr(>|z|)` = formatC(`Pr(>|z|)`, format = "f", digits = 4)
   )
 
+# Display coefficients table
 set_flextable_defaults(digits = 4)
 
 coefficients_df %>%
-as_flextable(max_row = 999) %>%
+  as_flextable(max_row = 999) %>%
   set_caption(
     caption = as_paragraph(
       as_chunk("Table 4.1", props = fp_text(font.size = 11)),
       as_chunk("\nSummary of Logistic regression", props = fp_text(font.size = 11))
     ),
     fp_p = fp_par(text.align = "center", padding = 5)
-  )%>% 
+  ) %>% 
   fix_border_issues() %>%
-  autofit() 
+  autofit()
 
+# Extract scaling parameters
+train_scales <- lapply(train_data[numeric_vars], function(x) list(center = attr(x, "scaled:center"), scale = attr(x, "scaled:scale")))
+
+# Scale numeric variables in the testing set using training set parameters
+for (var in numeric_vars) {
+  test_data[[var]] <- scale(test_data[[var]], center = train_scales[[var]]$center, scale = train_scales[[var]]$scale)
+}
+
+# Make predictions on the test set
+test_data$predicted_prob <- predict(model_2, newdata = test_data, type = "response")
+test_data$predicted_class <- ifelse(test_data$predicted_prob > 0.5, 1, 0)
+
+# Evaluate the model's performance
+confusion_matrix <- confusionMatrix(as.factor(test_data$predicted_class), as.factor(test_data$boucle_bin))
+
+# Print confusion matrix
+print(confusion_matrix)
+
+library(ggstats)
 ggcoef_multinom(model_2)+
   ggtitle("Figure 3.13\nLog odds ratios (log(OR)) for different types of insulin pumps") +
   theme(plot.title = element_text(size = 12, hjust = 0.5))
 
+
+plot(model_2)
 
 ```
 
@@ -959,14 +1002,17 @@ suppressMessages({
   
   suppressMessages({
     # ROC curves
-    roc_1 <- roc(pca_data_2$boucle_bin, pred_1)
-    roc_2 <- roc(pca_data_2$boucle_bin, pred_2)
+    roc_1 <- roc(pca_data$boucle_bin, pred_1)
+    roc_2 <- roc(train_data$boucle_bin, pred_2)
   })  
   
-  # Plot ROC curves
-  plot(roc_1, col = "blue", main = "ROC Curve Comparison")
-  lines(roc_2, col = "red")
-  legend("bottomright", legend = c("Model 1", "Model 2"), col = c("blue", "red"), lwd = 2)
+# Plot ROC curve for Model 1
+plot(roc_1, col = "blue", main = "ROC Curve for Model 1")
+legend("bottomright", legend = "Model 1", col = "blue", lwd = 2)
+
+# Plot ROC curve for Model 2
+plot(roc_2, col = "red", main = "ROC Curve for Model 2")
+legend("bottomright", legend = "Model 2", col = "red", lwd = 2)
 
 
 ```
