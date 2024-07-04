@@ -1,0 +1,972 @@
+---
+title: "Principal component analysis"
+output:
+  word_document:
+    number_sections: true
+    fig_caption: true
+    reference_docx: style.docx
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+library(readxl)
+library(writexl)
+library(dplyr)
+library(flextable)
+library(officer)
+library(Amelia)
+library(FactoMineR)
+library(factoextra)
+library(cluster)
+library(ggsci)
+library(tibble)
+```
+
+```{r load-data, include=FALSE}
+# Load the data
+survey_data <- read_excel("data/Survey Data_DT1.xlsx")
+EORTCQLQBR23 <- read_excel("data/EORTCQLQBR23.xlsx")
+BREASTQ <- read_excel("data/BREASTQ.xlsx")
+
+set_flextable_defaults(
+  border.color = "#AAAAAA", font.family = "Calibri",
+  font.size = 10, padding = 2
+)
+```
+
+# Summary Statistics
+
+## Demographics
+
+The study involved 77 participants with the majority using Medtronic780 (40.3%) and Omnipod (29.9%) insulin pumps, while others used Medtronic640 (16.9%) and tslim (13.0%). Most participants utilized an open insulin delivery system (58.4%), and nearly all had Type I diabetes (93.5%). The gender distribution showed 62.3% females and 37.7% males, with an average age of 49.4 years. The average duration since diabetes diagnosis was 24.3 years, and the average duration of being diabetic was 23.6 years.
+
+<br>
+
+```{r summary-table 1, echo=FALSE, include=TRUE}
+
+# Calculate age from year of birth
+current_year <- as.numeric(format(Sys.Date(), "%Y"))
+
+pca_data <- survey_data %>%
+  mutate(
+    Age = current_year - naissance,
+    Time_since_test = current_year - depistage,
+    Sex = case_when(
+      sexe == 0 ~ "Female",
+      sexe == 1 ~ "Male"
+    ),
+    boucle = case_when(
+      boucle == 0 ~ "Open",
+      boucle == 1 ~ "Semi-closed"
+    ),
+    DT = case_when(
+      DT == 0 ~ "Other",
+      DT == 1 ~ "Type I"
+    )
+    )
+
+demog_data <- pca_data %>% select(typepompe, boucle, DT, Sex, Age, Time_since_test, Duree)
+
+col_labels <- c(
+  typepompe = "Type of insulin pump",
+  boucle = "Boucle",
+  DT = "Diabetes type",
+  Time_since_test = "Duration after diabetes test",
+  Duree = "Duration of being diabetic"
+)
+
+demog_summary <- summarizor(demog_data) %>%
+  as_flextable() %>%
+  set_caption(
+    caption = as_paragraph(
+      as_chunk("Table 1.1", props = fp_text(font.size = 11)),
+      as_chunk("\nDemographic caracteristics", props = fp_text(font.size = 11))
+    ),
+    fp_p = fp_par(text.align = "center", padding = 5)
+  )%>% 
+  add_footer_lines("Source: Questionaire Baseline") %>% 
+  fix_border_issues() %>%
+  autofit() %>%
+  width(width = c(2,2,0.01,2)) %>%
+  padding(i = ~ duplicated(variable), j = "variable", padding.bottom = 10) %>%
+  labelizor(j = "variable", labels = col_labels, part = "all")
+
+demog_summary
+
+```
+
+<br>
+
+## Summary of Scores
+
+The study assessed various health indices among participants. The World Health Organization Five Well-Being Index had a mean score of 58.6 with a range from 8.0 to 88.0, indicating varying levels of well-being. The Patient Health Questionnaire 9 showed a mean score of 6.9, reflecting mild depressive symptoms, with scores ranging from 0.0 to 26.0. The assessment of precariousness and health inequalities had a mean score of 19.6, highlighting moderate levels of socio-economic difficulties. Other metrics such as compliance (mean: 1.0), fragility (mean: 2.0), and various diabetes distress scales provided insights into the participants' compliance, fragility, and distress levels, with glycated hemoglobin levels averaging 7.3, indicating overall blood glucose control. The Time in Range (TIR) metric, which measures the percentage of time participants' blood glucose levels were within the target range, had a mean of 62.2%, suggesting moderate glycemic control. Additionally, the incidence of severe hypoglycemia in the past six months was relatively low, with a mean of 0.6 episodes, indicating that most participants experienced few severe hypoglycemic events.
+
+<br>
+
+```{r summary-table 2,  echo=FALSE, include=TRUE}
+create_summary_table <- function(data, var_names, col_labels, table_caption_1, table_caption_2) {
+  summary_data <- data %>%
+    dplyr::select(all_of(var_names)) 
+  
+  summary_table <- summarizor(summary_data) %>%
+    as_flextable(separate_with = "variable") %>%
+    set_caption(
+      caption = as_paragraph(
+        as_chunk(table_caption_1, props = fp_text(font.size = 11)),
+        as_chunk(table_caption_2, props = fp_text(font.size = 11))
+      ),
+      fp_p = fp_par(text.align = "center", padding = 5)
+    ) %>%
+    add_footer_lines("Source: Questionnaire Baseline") %>%
+    fix_border_issues() %>%
+    autofit() %>%
+    width(width = c(3.5, 1.5, 0.01, 1)) %>%
+    labelizor(j = "variable", labels = col_labels, part = "all") %>%
+    labelizor(j = "stat", labels = col_labels, part = "all") %>%
+    fix_border_issues()
+
+  return(summary_table)
+}
+
+
+var_names <- c(
+  "who5", "phq9", "epices", "girerd", "fried", 
+  "ddsglobal", "ddsemotionnel", "ddssoignant", "ddslife", "ddsfam", 
+  "hba1c", "tir", "hypo"
+)
+
+col_labels <- c(
+  who5 = "World health organization five well being index",
+  phq9 = "Patient Health Questionnaire 9",
+  epices = "Assessment of precariousness and health inequalities in health examination centers",
+  girerd = "Gired : compliance",
+  fried = "Fried : fragility",
+  ddsglobal = "Diabetes distress scale",
+  ddsemotionnel = "Diabetes distress scale emotional",
+  ddssoignant = "Diabetes distress scale healthcare providers",
+  ddslife = "Diabetes distress scale lifestyle",
+  ddsfam = "Diabetes family distress scale",
+  hba1c = "Glycated hemoglobin",
+  tir = "Time in range = time on target",
+  hypo = "Severe hypoglycemia in the past 6 months"
+)
+
+table_caption_1 <- "Table 1.2"
+table_caption_2 <- "\nEvaluation of various health indices"
+
+set_flextable_defaults(digits = 2)
+
+create_summary_table(pca_data, 
+                     var_names, col_labels, table_caption_1, table_caption_2)
+
+
+```
+
+
+## Summary of EORTCQLQBR23
+
+The scoring method for the EORTC QLQ-BR23 involves two main steps: calculating the raw score and performing a linear transformation. The raw score for each multi-item scale is the average of the corresponding item scores, while single-item measures use the item's score as the raw score. Certain items require reverse scoring before statistical analysis. To standardize raw scores to a 0-100 range, a linear transformation is applied: for functional scales, the formula is $S = \left(1 - \frac{RS - 1}{\text{range}}\right) \times 100$, and for symptom scales, the formula is $S = \left(\frac{RS - 1}{\text{range}}\right) \times 100$. High scores on functional scales indicate better functioning, while high scores on symptom scales indicate higher symptom severity.
+
+```{r summary-table 3,  echo=FALSE, include=TRUE}
+
+# Function to calculate EORTC QLQ-BR23 scores
+calculate_eortc_qlq_br23_scores <- function(df) {
+  # Reverse items 44, 45, and 46
+  df <- df %>%
+    mutate(across(c(EORTCQLQBR23_Q44, EORTCQLQBR23_Q45, EORTCQLQBR23_Q46), ~ 5 - .))
+
+  # Function to calculate scale scores
+  calculate_scale <- function(items) {
+    valid_items <- rowSums(!is.na(items))
+    ifelse(valid_items >= (ncol(items) / 2),
+           rowMeans(items, na.rm = TRUE),
+           NA)
+  }
+
+  # Calculate functional scales
+  df <- df %>%
+    mutate(
+      body_image = calculate_scale(select(., EORTCQLQBR23_Q39:EORTCQLQBR23_Q42)),
+      sexual_function = calculate_scale(select(., EORTCQLQBR23_Q44:EORTCQLQBR23_Q45)),
+      sexual_enjoyment = EORTCQLQBR23_Q46,
+      future_perspective = EORTCQLQBR23_Q43
+    ) %>%
+    mutate(across(c(body_image, sexual_function, sexual_enjoyment, future_perspective),
+                  ~ (1 - (. - 1) / 3) * 100))
+  
+  # Calculate symptom scales
+  df <- df %>%
+    mutate(
+      systemic_therapy_side_effects = calculate_scale(select(., EORTCQLQBR23_Q31:EORTCQLQBR23_Q34, EORTCQLQBR23_Q36:EORTCQLQBR23_Q38)),
+      breast_symptoms = calculate_scale(select(., EORTCQLQBR23_Q50:EORTCQLQBR23_Q53)),
+      arm_symptoms = calculate_scale(select(., EORTCQLQBR23_Q47:EORTCQLQBR23_Q49)),
+      upset_by_hair_loss = EORTCQLQBR23_Q35
+    ) %>%
+    mutate(across(c(systemic_therapy_side_effects, breast_symptoms, arm_symptoms, upset_by_hair_loss),
+                  ~ ((. - 1) / 3) * 100))
+  
+  return(df)
+}
+
+# Calculate scores
+EORTCQLQBR23_scored_data <- calculate_eortc_qlq_br23_scores(EORTCQLQBR23)
+
+
+# Variable names for the EORTC QLQ-BR23 scores
+var_names <- c(
+  "body_image", "sexual_function", "sexual_enjoyment", "future_perspective",
+  "systemic_therapy_side_effects", "breast_symptoms", "arm_symptoms", "upset_by_hair_loss"
+)
+
+# Column labels for the EORTC QLQ-BR23 scores
+col_labels <- c(
+  body_image = "Body Image",
+  sexual_function = "Sexual Function",
+  sexual_enjoyment = "Sexual Enjoyment",
+  future_perspective = "Future Perspective",
+  systemic_therapy_side_effects = "Systemic Therapy Side Effects",
+  breast_symptoms = "Breast Symptoms",
+  arm_symptoms = "Arm Symptoms",
+  upset_by_hair_loss = "Upset by Hair Loss"
+)
+
+table_caption_1 <- "Table 1.3"
+table_caption_2 <- "\nSummary of EORTC QLQ-BR23 Scores"
+
+
+create_summary_table(EORTCQLQBR23_scored_data, var_names, col_labels, table_caption_1, table_caption_2)
+
+
+```
+
+## Summary of SATISFACTION WITH BREASTS
+
+```{r summary-table 4,  echo=FALSE, include=TRUE}
+
+breastq_data <- BREASTQ
+
+satisfaction_cols <- c("BREASTQMAST_Q01", "BREASTQMAST_Q02", "BREASTQMAST_Q03", "BREASTQMAST_Q04")
+
+# Function to handle missing data by imputing mean if missing data is less than 50%
+impute_missing <- function(row) {
+  if (sum(is.na(row)) / length(row) < 0.5) {
+    mean_value <- mean(row, na.rm = TRUE)
+    row[is.na(row)] <- mean_value
+  }
+  return(row)
+}
+
+# Apply the impute_missing function to the satisfaction columns
+breastq_data[satisfaction_cols] <- t(apply(breastq_data[satisfaction_cols], 1, impute_missing))
+
+# Calculate the raw score for Satisfaction with Breasts
+breastq_data <- breastq_data %>%
+  mutate(
+    satisfaction_breasts_raw = rowSums(select(., all_of(satisfaction_cols)), na.rm = TRUE)
+  )
+
+# Define a function to calculate the scaled score
+calculate_scaled_score <- function(raw_score, max_score) {
+  return((raw_score / max_score) * 100)
+}
+
+# Assuming the max score for Satisfaction with Breasts is 25 (as an example)
+max_score_satisfaction_breasts <- 16
+
+# Calculate the scaled score for Satisfaction with Breasts
+breastq_data <- breastq_data %>%
+  mutate(
+    satisfaction_breasts_scaled = calculate_scaled_score(satisfaction_breasts_raw, max_score = max_score_satisfaction_breasts)
+  )
+
+
+# Variable names for the Satisfaction with Breasts scores
+var_names <- c("satisfaction_breasts_scaled")
+
+# Column labels for the Satisfaction with Breasts scores
+col_labels <- c(
+  satisfaction_breasts_scaled = "Satisfaction with Breasts"
+)
+
+table_caption_1 <- "Table 1.4"
+table_caption_2 <- "\nSummary of Satisfaction with Breasts Scores"
+
+
+create_summary_table(breastq_data, var_names, col_labels, table_caption_1, table_caption_2)
+
+
+```
+
+# Principal Component Analysis (with encoded categories, typepompe excluded)
+
+## Eigenvalues of Principal Components
+
+**Practical Implications** Based on the scree plot:
+
+The scree plot shown in Figure 2.1 displays the eigenvalues of the principal components derived from a Principal Component Analysis (PCA). Each bar represents the percentage of the total variance explained by each principal component. Here's how to interpret this plot:
+
+1.  **X-axis (Dimensions)**:
+    -   This axis represents the principal components, numbered from 1 to 10 in this plot.
+2.  **Y-axis (Percentage of Explained Variance)**:
+    -   This axis shows the percentage of the total variance in the dataset explained by each principal component.
+3.  **Bars (Percentage of Explained Variance by Each Component)**:
+    -   Each bar's height indicates the proportion of the total variance explained by the corresponding principal component. For example, the first principal component explains approximately 33.6% of the total variance, while the second explains about 14.5%.
+4.  **Line Plot (Cumulative Explained Variance)**:
+    -   The black line connecting the points at the top of each bar represents the cumulative explained variance. It helps to visualize how much total variance is explained as more principal components are included.
+
+```{r pca 1, echo=FALSE, include=TRUE}
+
+
+
+pca_data <- as.data.frame(survey_data) %>%
+  mutate(
+    Age = current_year - naissance,
+    Time_since_test = current_year - depistage,
+    Sex = case_when(
+      sexe == 0 ~ "Female",
+      sexe == 1 ~ "Male"
+    ),
+    boucle = case_when(
+      boucle == 0 ~ "Open",
+      boucle == 1 ~ "Semi-closed"
+    ),
+    DT = case_when(
+      DT == 0 ~ "Other",
+      DT == 1 ~ "Type I"
+    )
+    )
+
+
+var_names_pca <- c("Duree", "who5", "phq9", 
+               "epices", "girerd", "fried", "ddsglobal", "ddsemotionnel", 
+               "ddssoignant", "ddslife", "ddsfam", "hba1c", "tir", 
+               "hypo", "Age", "Time_since_test")
+
+
+rownames(pca_data) <- pca_data[[1]]
+pca_result <- PCA(pca_data %>% select(all_of(var_names_pca)), 
+                  scale.unit = TRUE, graph = FALSE, ncp = ncol(pca_data)-1)
+
+
+fviz_eig(pca_result, addlabels = TRUE, ylim = c(0, 50)) +
+  ggtitle("Figure 2.1\nEigenvalues of Principal Components") +
+  theme(plot.title = element_text(size = 11, hjust = 0.5))
+
+
+```
+
+## Individual Plot
+
+**Figure 2.2.1: Individuals Factor Map (PC1 vs PC2)**
+
+- **Axes**:
+  - **PC1**: Explains 33.6% of the variance.
+  - **PC2**: Explains 14.5% of the variance.
+
+- **Color**: Points are colored based on cos2 values, indicating representation quality.
+
+- **Interpretation**: Points farther from the origin indicate individuals with extreme values on PC1 and PC2. Clustering suggests similar profiles.
+
+**Figure 2.2.2: Individuals Factor Map (PC1 vs PC3)**
+
+- **Axes**:
+  - **PC1**: Explains 33.6% of the variance.
+  - **PC3**: Explains 10.6% of the variance.
+
+- **Color**: Points colored by cos2 values.
+
+- **Interpretation**: Shows additional variance captured by PC3. Identifies unique characteristics.
+
+**Figure 2.2.3: Individuals Factor Map (PC2 vs PC3)**
+
+- **Axes**:
+  - **PC2**: Explains 14.5% of the variance.
+  - **PC3**: Explains 10.6% of the variance.
+
+- **Color**: Points colored by cos2 values.
+
+- **Interpretation**: Highlights variance captured by PC2 and PC3. Useful for examining unique relationships.
+
+
+```{r pca 2, echo=FALSE, include=TRUE, fig.width=12, fig.height=8}
+
+fviz_pca_ind(pca_result, axes = c(1, 2), col.ind = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 2.2.1\nIndividuals Factor Map (PC1 vs PC2)") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+fviz_pca_ind(pca_result, axes = c(1, 3), col.ind = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 2.2.2\nIndividuals Factor Map (PC1 vs PC3)") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+fviz_pca_ind(pca_result, axes = c(2, 3), col.ind = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 2.2.3\nIndividuals Factor Map (PC2 vs PC3)") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+
+```
+
+## Variable Plot
+
+- **Interpretation**:
+  - **Vectors**: Each vector represents a variable. The length and direction indicate the contribution and correlation of the variable with the principal components.
+  
+  - **Clustering**: Variables that cluster together are correlated.
+  
+  - **Proximity to Circle**: Variables close to the circle's edge are well represented by PC1 and PC2, while those closer to the center are less well represented.
+
+
+```{r pca 3 1, echo=FALSE, include=TRUE, fig.width=12, fig.height=8}
+
+fviz_pca_var(pca_result, axes = c(1, 2), col.var = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 2.3.1\nVariables Factor Map (PC1 vs PC2)") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+```
+
+
+```{r pca 3 2, echo=FALSE, include=TRUE, fig.width=12, fig.height=8}
+fviz_pca_var(pca_result, axes = c(1, 3), col.var = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 2.3.2\nVariables Factor Map (PC1 vs PC3)") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+```
+
+
+```{r pca 3 3, echo=FALSE, include=TRUE, fig.width=12, fig.height=8}
+fviz_pca_var(pca_result, axes = c(2, 3), col.var = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 2.3.3\nVariables Factor Map (PC2 vs PC3)") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+```
+
+<br>
+
+## Contributing variables analysis
+
+The bar plots illustrate the contributions of variables to the first 4 principal components. 
+
+```{r pca 4, echo=FALSE, include=TRUE, fig.width=12, fig.height=8}
+
+fviz_contrib(pca_result, choice = "var", axes = 1) +
+  ggtitle("Figure 2.4.1\nContributing Variables to PC1") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+fviz_contrib(pca_result, choice = "var", axes = 2) +
+  ggtitle("Figure 2.4.2\nContributing Variables to PC2") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+fviz_contrib(pca_result, choice = "var", axes = 3) +
+  ggtitle("Figure 2.4.3\nContributing Variables to PC3") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+fviz_contrib(pca_result, choice = "var", axes = 4) +
+  ggtitle("Figure 2.4.4\nContributing Variables to PC4") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+fviz_contrib(pca_result, choice = "ind", axes = 1, top = 20) +
+  ggtitle("Figure 2.4.5\nContributing Individuals to PC1") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+fviz_contrib(pca_result, choice = "ind", axes = 2, top = 20) +
+  ggtitle("Figure 2.4.6\nContributing Individuals to PC2") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+```
+
+## Clustering analysis
+
+```{r pca 5, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+res.hcpc <- HCPC(pca_result, graph = FALSE)
+
+fviz_dend(res.hcpc, 
+          cex = 0.7,                     # Label size
+          palette = "jco",               # Color palette see ?ggpubr::ggpar
+          rect = TRUE, rect_fill = TRUE, # Add rectangle around groups
+          rect_border = "jco",           # Rectangle color
+          labels_track_height = 0.8      # Augment the room for labels
+          ) +
+  ggtitle("Figure 2.5.1\nCluster Dendogram") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+fviz_cluster(res.hcpc,
+             repel = TRUE,            # Avoid label overlapping
+             show.clust.cent = TRUE, # Show cluster centers
+             palette = "jco",         # Color palette see ?ggpubr::ggpar
+             ggtheme = theme_minimal(),
+             main = "Factor map"
+             ) +
+  ggtitle("Figure 2.5.2\nFactor map") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+clusters <- res.hcpc$data.clust$clust
+cluster_counts <- table(clusters)
+print(cluster_counts)
+```
+
+<br>
+
+### Summary of Hierarchical Clustering Analysis after PCA
+
+**Objective:** To group variables into clusters based on their similarity after performing Principal Component Analysis (PCA).
+
+**Variables Analyzed:** A variety of health and behavioral metrics, including scores on psychological assessments, types of insulin pumps used, and blood glucose measures.
+
+**Clusters Identified:** Three distinct clusters were identified based on the hierarchical clustering.
+
+```{r pca 6, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+# Manually extract each cluster's data
+cluster_1 <- res.hcpc$desc.v[["quanti"]][["1"]]
+cluster_2 <- res.hcpc$desc.v[["quanti"]][["2"]]
+cluster_3 <- res.hcpc$desc.v[["quanti"]][["3"]]
+
+# Convert each cluster's data into a data frame
+df1 <- rownames_to_column(as.data.frame(cluster_1), var = "Variable")
+df2 <- rownames_to_column(as.data.frame(cluster_2), var = "Variable")
+df3 <- rownames_to_column(as.data.frame(cluster_3), var = "Variable")
+
+# Add a column to identify the cluster
+df1$Cluster <- 1
+df2$Cluster <- 2
+df3$Cluster <- 3
+
+format_p_value <- function(p) {
+  if (p < 0.005) {
+    "<0.005"
+  } else {
+    formatC(p, format = "f", digits = 3)
+  }
+}
+
+# Vectorize the format_p_value function
+format_p_value_vectorized <- Vectorize(format_p_value)
+
+# Combine data frames and format p-values
+final_stat <- rbind(df1, df2, df3) %>%
+  mutate(
+    p.value = paste("   ", format_p_value_vectorized(p.value))
+  )
+
+# Combine all clusters into one data frame
+final_stat %>% as_flextable(max_row = 999) %>%
+  set_caption(
+    caption = as_paragraph(
+      as_chunk("Table 2.1", props = fp_text(font.size = 11)),
+      as_chunk("\nDescription of each cluster by quantitative variables", props = fp_text(font.size = 11))
+    ),
+    fp_p = fp_par(text.align = "center", padding = 5)
+  )%>% 
+  add_footer_lines("Source: Questionaire Baseline") %>% 
+  fix_border_issues() %>%
+  autofit() 
+
+```
+
+# Factor Analysis of Mixed Data (typepompe excluded)
+
+## Dimensions overview
+
+This plot represents the results of a Factor Analysis of Mixed Data (FAMD), which is a technique used to analyze datasets containing both categorical and continuous variables. The goal of FAMD is to reduce the dimensionality of the data while preserving as much variability as possible.
+
+
+
+```{r pca 7, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+
+pca_dataFAMD <- pca_data %>%
+  select(-c("sexe","naissance","depistage", "patient ID"))
+
+rownames(pca_dataFAMD) <- pca_data$`patient ID`
+
+res.famd <- FAMD(pca_dataFAMD, ncp = 20, sup.var = NULL, ind.sup = NULL, graph = FALSE)
+
+fviz_eig(res.famd, addlabels = TRUE, ylim = c(0, 40)) +
+  ggtitle("Figure 3.1\nEigenvalues of Principal Components") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+```
+
+**Practical Implications**
+
+Based on the FAMD analysis:
+
+-   **Key Variables:** The most contributing variables to Dim1 (`ddsglobal`, `ddsemotionnel`, `phq9`) and Dim2 (`Time_since_test`, `Duree`) are crucial for understanding the primary sources of variability in the data.
+
+-   **Focus Areas:** Variables with high contributions should be the focus of further analysis and interpretation to understand their impact and relationships within the dataset.
+
+-   **Dimensionality Reduction:** Variables closer to the origin with lower contributions can be considered for removal or further investigation if dimensionality reduction is needed, simplifying the analysis without significant loss of information.
+
+This analysis helps to identify the most influential variables driving variability in the dataset, guiding targeted and informed decision-making.
+
+```{r pca 8, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_famd_var(res.famd, repel = TRUE) +
+  ggtitle("Figure 3.2\nPlot of variables") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+fviz_contrib(res.famd, "var", axes = 1) +
+  ggtitle("Figure 3.3\nContribution to the first dimension") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+fviz_contrib(res.famd, "var", axes = 2) +
+  ggtitle("Figure 3.4\nContribution to the second dimension") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+
+```
+
+## Quantitative variables visualization
+
+**Quantitative Variables - FAMD (Figure 3.5)** The plot shows the distribution of quantitative variables across the first two principal components (Dim1 and Dim2). Variables such as `ddsemotionnel`, `ddsglobal`, and `ddslife` have strong contributions to Dim1, as indicated by their long vectors along the horizontal axis. Variables positioned closer to the origin have lower contributions to both dimensions, indicating less influence on the variability captured by these components.
+
+**Key Observations:**
+
+-   **Dim1 Contributions:** Variables like `ddsemotionnel`, `ddsglobal`, and `ddslife` contribute significantly to Dim1, indicating these variables are major drivers of the variance in the first principal component.
+
+-   **Variable Relationships:** Variables pointing in similar directions are positively correlated. For example, `ddsglobal` and `ddsemotionnel` point in nearly the same direction, indicating a strong positive correlation.
+
+```{r pca 9, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+
+fviz_famd_var(res.famd, "quanti.var", axes = c(1, 2), col.var = "cos2",
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 3.5\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+```
+
+**Specific Observations**
+
+-   **Health Metrics**: Variables like `hba1c`, `ddsemotionnel`, and `ddsglobal` have high contributions to Dim1.
+
+-   **Well-being and Psychological Measures**: Variables such as `phq9`, `ddsiflife`, `fried` are grouped closely, indicating a relationship in this dimension.
+
+```{r pca 10, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_famd_var(res.famd, "quanti.var", axes = c(1, 3), col.var = "cos2",
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 3.6\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+```
+
+```{r pca 11, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_famd_var(res.famd, "quanti.var", axes = c(2, 3), col.var = "cos2",
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 3.7\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+```
+
+```{r pca 12, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_famd_var(res.famd, "quanti.var", axes = c(1, 4), col.var = "cos2",
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) +
+  ggtitle("Figure 3.8\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+
+
+
+```
+
+## Quantitative variables visualization
+
+**Specific Observations**
+
+-   **Gender and Device Type**: Male and Female are well separated along Dim1, with different insulin pump types clustered around each gender.
+
+-   **Type I Diabetes**: The variable `Type I` is close to the center, suggesting it does not vary significantly along these dimensions.
+
+-   **Other**: This variable is positioned distinctly, indicating a specific influence on Dim2.
+
+```{r pca 13, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_famd_var(res.famd, "quali.var", col.var = "cos2", axes = c(1, 2),
+gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")) +
+  ggtitle("Figure 3.9\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+```
+
+**Specific Observations**
+
+-   **Gender Distribution**: `Male` and `Female` are separated along Dim1, showing distinct patterns.
+
+-   **Open Systems**: The `Open` variable has a moderate contribution, positioned between other pump types.
+
+```{r pca 14, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_famd_var(res.famd, "quali.var", col.var = "cos2", axes = c(1, 3),
+gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")) +
+  ggtitle("Figure 3.10\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+```
+
+**Specific Observations**
+
+-   **Type I Diabetes**: This variable remains central, suggesting consistent representation.
+
+-   **Other Insulin Pumps**: The `Other` category shows a specific pattern along Dim3.
+
+```{r pca 15, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_famd_var(res.famd, "quali.var", col.var = "cos2", axes = c(2, 3),
+gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")) +
+  ggtitle("Figure 3.11\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+```
+
+## Plotting individuals
+
+```{r pca 16, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+fviz_mfa_ind(res.famd,
+habillage = "boucle", # color by groups
+addEllipses = TRUE,
+repel = TRUE # Avoid text overlapping
+) +
+  ggtitle("Figure 3.11\nQuantitative variables - FAMD") +
+  theme(plot.title = element_text(size = 20, hjust = 0.5))
+
+```
+
+# Building Statistical Model to fit our data
+
+## Binomial Logistic Regression Results (for some variables, boucle as dependent variabele)
+
+**Interpretation of Coefficients**
+
+The plot displays the log odds ratios (log(OR)) for different variables (hba1c, tir, and hypo) in relation to the type of insulin pump used. Here is a practical summary of the results:
+
+**hba1c**
+
+-   The log(OR) is close to zero with a wide confidence interval that crosses zero, indicating no significant association between hba1c and the type of insulin pump used.
+
+**tir**
+
+-   The log(OR) is negative with a narrow confidence interval, suggesting that higher tir values are associated with lower odds of using a specific insulin pump compared to the reference category. The confidence interval not crossing zero indicates that this result is statistically significant.
+
+**hypo**
+
+-   The log(OR) is close to zero with a wide confidence interval that crosses zero, indicating no significant association between hypo and the type of insulin pump used.
+
+**Practical Implications**
+
+The results suggest that there is statistically significant associations tir with the type of insulin pump used when compared to the reference category. This implies that other variables may not be strong predictors of insulin pump type choice in this dataset.
+
+**Notes**
+
+-   **Statistical Significance**: The p-values for all coefficients indicate that none of the associations are statistically significant at the 0.05 level.
+
+-   **Confidence Intervals**: Wide confidence intervals suggest variability in the estimates, and intervals crossing zero indicate non-significant effects.
+
+Further research with a larger sample size or additional predictors may be necessary to identify significant predictors of insulin pump type.
+
+```{r pca 17, echo=FALSE, include=TRUE,  warning=FALSE}
+
+library(nnet)
+library(GGally)
+
+pca_data$boucle_bin <- ifelse(pca_data$boucle == "Open", 0, 1)
+
+model <- glm(boucle_bin ~ hba1c + tir + hypo, family = binomial, data = pca_data)
+
+ggcoef_multinom(model)+
+  ggtitle("Figure 3.12\nLog odds ratios (log(OR)) for different types of insulin pumps") +
+  theme(plot.title = element_text(size = 12, hjust = 0.5))
+
+
+```
+
+**Model Fit Statistics**
+
+-   Null deviance: 104.539 on 76 degrees of freedom
+
+-   Residual deviance: 77.929 on 73 degrees of freedom
+
+-   AIC: 85.929
+
+-   Number of Fisher Scoring iterations: 5
+
+**Practical Conclusions**
+
+1.  **Intercept**:
+    -   The intercept estimate is -15.00690 with a p-value of 0.0634. This indicates that when all predictors are at zero, the log odds of the outcome occurring is -15.00690. However, this is not statistically significant at the 0.05 level.
+2.  **hba1c**:
+    -   The estimate for `hba1c` is 0.86449 with a standard error of 0.77200. The p-value is 0.2628, indicating that `hba1c` is not a statistically significant predictor of the outcome in this model at the 0.05 level. Thus, there is insufficient evidence to suggest that `hba1c` is associated with the outcome.
+3.  **tir**:
+    -   The estimate for `tir` is 0.12997 with a standard error of 0.04300. The p-value is 0.0025, which is highly significant (p \< 0.01). This indicates that `tir` is a statistically significant predictor of the outcome. For every unit increase in `tir`, the log odds of the outcome "Semi-closed" occurring increases by 0.12997.
+4.  **hypo**:
+    -   The estimate for `hypo` is -0.08698 with a standard error of 0.24233. The p-value is 0.7196, indicating that `hypo` is not a statistically significant predictor of the outcome in this model. There is no sufficient evidence to suggest that `hypo` is associated with the outcome.
+
+**Interpretation**
+
+-   The model suggests that among the predictors, only `tir` is a significant predictor of the outcome. This means that as `tir` increases, the likelihood of the "Semi-closed" outcome occurring increases.
+
+-   The non-significance of `hba1c` and `hypo` indicates that these variables do not have a statistically significant effect on the outcome in this dataset.
+
+-   The model fit statistics (deviance and AIC) provide a measure of how well the model fits the data, with lower values indicating a better fit.
+
+```{r pca 18, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+# Assuming 'model' is your logistic regression model
+summary_model <- summary(model)
+
+# Extract the coefficients matrix
+coefficients_matrix <- summary_model$coefficients
+
+# Convert the matrix to a data frame
+coefficients_df <- as.data.frame(coefficients_matrix)
+
+coefficients_df$Term <- rownames(coefficients_df)
+rownames(coefficients_df) <- NULL
+
+# Reorder columns to have 'Term' first
+coefficients_df <- coefficients_df[, c("Term", "Estimate", "Std. Error", "z value", "Pr(>|z|)")]%>%
+  mutate(
+    `Pr(>|z|)` = formatC( `Pr(>|z|)`, format = "f", digits = 4)
+  )
+
+coefficients_df %>%
+as_flextable(max_row = 999) %>%
+  set_caption(
+    caption = as_paragraph(
+      as_chunk("Table 4.1", props = fp_text(font.size = 11)),
+      as_chunk("\nSummary of Logistic regression", props = fp_text(font.size = 11))
+    ),
+    fp_p = fp_par(text.align = "center", padding = 5)
+  )%>% 
+  fix_border_issues() %>%
+  autofit() 
+
+```
+
+## Binomial Logistic Regression Results (for most of variables, boucle as dependent variabele)
+
+**Interpretation:**
+
+-   Several predictors are significant, indicating they have a meaningful impact on the outcome variable.
+
+-   The model has reduced deviance, suggesting a good fit.
+
+**Logistic Regression Model Adjustments**
+
+-   **Time_since_test**: The model performs better without this variable.
+
+-   **DT**: Removed due to high Variance Inflation Factor (VIF), indicating multicollinearity.
+
+-   **ddsemotionnel**, **ddssoignant**, **ddslife**, **ddsfam**: Eliminated due to its high correlation with **dsglobal**.
+
+-   **Sex**: Excluded from the model as it was not a significant predictor.
+
+```{r pca 19, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+pca_data$Sex <- as.factor(pca_data$Sex)
+pca_data$DT <- as.factor(pca_data$DT)
+
+
+numeric_vars <- c("Age", "Duree", "who5", "phq9", "epices", "girerd", "fried", 
+                  "ddsglobal", "ddssoignant", "ddslife", "ddsfam", "hba1c", "tir", "hypo")
+pca_data_2 <- pca_data
+pca_data_2[numeric_vars] <- lapply(pca_data[numeric_vars], scale)
+
+formula <- boucle_bin ~ Age + Duree + who5 + I(who5^2) + I(who5^3) + phq9 + epices + girerd + fried + 
+  ddsglobal + hba1c + tir + hypo 
+
+model_2 <- glm( 
+  formula, 
+  family = binomial, 
+  data = pca_data_2
+)
+
+summary_model <- summary(model_2)
+
+# Extract the coefficients matrix
+coefficients_matrix <- summary_model$coefficients
+
+# Convert the matrix to a data frame
+coefficients_df <- as.data.frame(coefficients_matrix)
+
+coefficients_df$Term <- rownames(coefficients_df)
+rownames(coefficients_df) <- NULL
+
+# Reorder columns to have 'Term' first
+coefficients_df <- coefficients_df[, c("Term", "Estimate", "Std. Error", "z value", "Pr(>|z|)")]%>%
+  mutate(
+    `Pr(>|z|)` = formatC( `Pr(>|z|)`, format = "f", digits = 4)
+  )
+
+set_flextable_defaults(digits = 4)
+
+coefficients_df %>%
+as_flextable(max_row = 999) %>%
+  set_caption(
+    caption = as_paragraph(
+      as_chunk("Table 4.1", props = fp_text(font.size = 11)),
+      as_chunk("\nSummary of Logistic regression", props = fp_text(font.size = 11))
+    ),
+    fp_p = fp_par(text.align = "center", padding = 5)
+  )%>% 
+  fix_border_issues() %>%
+  autofit() 
+
+ggcoef_multinom(model_2)+
+  ggtitle("Figure 3.13\nLog odds ratios (log(OR)) for different types of insulin pumps") +
+  theme(plot.title = element_text(size = 12, hjust = 0.5))
+
+
+```
+
+## Comparison of 2 models
+
+```{r pca 20, echo=FALSE, include=TRUE, fig.width=12, fig.height=8,  warning=FALSE}
+
+suppressMessages({
+  # Compare AIC and BIC
+  aic_comparison <- data.frame(
+    Model = c("Model 1", "Model 2"),
+    AIC = c(AIC(model), AIC(model_2)),
+    BIC = c(BIC(model), BIC(model_2))
+  )
+})  
+
+  aic_comparison %>%
+    as_flextable(max_row = 999) %>%
+    set_caption(
+      caption = as_paragraph(
+        as_chunk("Table 4.2", props = fp_text(font.size = 11)),
+        as_chunk("\nComparison of models", props = fp_text(font.size = 11))
+      ),
+      fp_p = fp_par(text.align = "center", padding = 5)
+    ) %>%
+    fix_border_issues() %>%
+    autofit()
+  
+  # Visualize comparison with ROC curves
+  library(pROC)
+  
+  # Predictions
+  pred_1 <- predict(model, type = "response")
+  pred_2 <- predict(model_2, type = "response")
+  
+  suppressMessages({
+    # ROC curves
+    roc_1 <- roc(pca_data_2$boucle_bin, pred_1)
+    roc_2 <- roc(pca_data_2$boucle_bin, pred_2)
+  })  
+  
+  # Plot ROC curves
+  plot(roc_1, col = "blue", main = "ROC Curve Comparison")
+  lines(roc_2, col = "red")
+  legend("bottomright", legend = c("Model 1", "Model 2"), col = c("blue", "red"), lwd = 2)
+
+
+```
